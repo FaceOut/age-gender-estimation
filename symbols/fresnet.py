@@ -23,9 +23,9 @@ Implemented the following paper:
 
 Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun. "Identity Mappings in Deep Residual Networks"
 '''
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
+
+
+
 import mxnet as mx
 import numpy as np
 import symbol_utils

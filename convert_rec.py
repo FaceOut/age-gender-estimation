@@ -7,7 +7,7 @@ train_vals = ['train', 'val'] # choose train or val to convert
 
 for dataset in datasets:
   for train_val in train_vals:
-    print('starting to convert %s %s' %(dataset,train_val))
+    print(('starting to convert %s %s' %(dataset,train_val)))
     source_dir = '/media/3T_disk/my_datasets/ssr_net/%s'%dataset
     output_dir = '/media/3T_disk/my_datasets/imdb_wiki/%s'%dataset
     source_idx = os.path.join(source_dir, '%s.idx'%train_val)
@@ -20,7 +20,7 @@ for dataset in datasets:
     widx = 0
     for img_idx in seq:
       if img_idx%1000==0:
-        print('processing %s %d' %(train_val,img_idx))
+        print(('processing %s %d' %(train_val,img_idx)))
       s = imgrec.read_idx(img_idx)
       header, img = mx.recordio.unpack(s)
       try:

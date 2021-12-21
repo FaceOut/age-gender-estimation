@@ -1,6 +1,6 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
+
+
+
 
 import os
 import random
@@ -124,7 +124,7 @@ class FaceImageIter(io.DataIter):
     def mirror_aug(self, img):
       _rd = random.randint(0,1)
       if _rd==1:
-        for c in xrange(img.shape[2]):
+        for c in range(img.shape[2]):
           img[:,:,c] = np.fliplr(img[:,:,c])
       return img
 
@@ -267,7 +267,7 @@ class FaceImageIterList(io.DataIter):
     self.cur_iter = random.choice(self.iter_list)
     while True:
       try:
-        ret = self.cur_iter.next()
+        ret = next(self.cur_iter)
       except StopIteration:
         self.cur_iter.reset()
         continue

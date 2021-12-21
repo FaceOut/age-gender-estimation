@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 import sys
 import cv2
 import mxnet as mx
@@ -28,8 +28,8 @@ class ESSHDetector:
 
     self._scales = np.array([32, 16, 8, 4, 2, 1])
     self._ratios = np.array([1.0] * len(self._feat_stride_fpn))
-    self._anchors_fpn = dict(zip(self.fpn_keys, generate_anchors_fpn(base_size=fpn_base_size, scales=self._scales, ratios=self._ratios)))
-    self._num_anchors = dict(zip(self.fpn_keys, [anchors.shape[0] for anchors in self._anchors_fpn.values()]))
+    self._anchors_fpn = dict(list(zip(self.fpn_keys, generate_anchors_fpn(base_size=fpn_base_size, scales=self._scales, ratios=self._ratios))))
+    self._num_anchors = dict(list(zip(self.fpn_keys, [anchors.shape[0] for anchors in list(self._anchors_fpn.values())])))
     self._rpn_pre_nms_top_n = 1000
     # self._rpn_post_nms_top_n = rpn_post_nms_top_n
     # self.score_threshold = 0.05

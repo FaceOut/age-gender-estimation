@@ -1,7 +1,7 @@
 """
 Generate base anchors on index 0
 """
-from __future__ import print_function
+
 import sys
 #from builtins import range
 import numpy as np

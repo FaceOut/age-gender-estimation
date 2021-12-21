@@ -45,7 +45,7 @@ def get_symbol(num_classes, **kwargs):
     fc_type = version_output
     base_filter = int(32*multiplier)
     bf = base_filter
-    print(version_input, version_output, base_filter)
+    print((version_input, version_output, base_filter))
 
     if version_input==0:
       conv_1 = Conv(data, num_filter=bf, kernel=(3, 3), pad=(1, 1), stride=(2, 2), name="conv_1") # 224/112
