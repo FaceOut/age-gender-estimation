@@ -246,23 +246,29 @@ def train_net(args):
     )
     val_dataiter = None
 
-    train_dataiter = FaceImageIter(
+    train_dataiter = mx.image.ImageIter(
         batch_size           = args.batch_size,
         data_shape           = data_shape,
         path_imgrec          = path_imgrec,
+        path_imgidx          = path_imgrec.replace('.rec', '.idx'),
         shuffle              = True,
-        rand_mirror          = args.rand_mirror,
-        mean                 = mean,
-        cutoff               = args.cutoff,
-        color_jittering      = args.color,
+        label_width = 2,
+        rand_mirror          = bool(args.rand_mirror),
+        rand_gray            = 0.1,
+        contrast             = 0.01,
+        hue                  = 0.01,
+        saturation           = 0.01,
+        pca_noise            = 0.01,
+        brightness           = 0.01
     )
-    val_dataiter = FaceImageIter(
+    val_dataiter = mx.image.ImageIter(
         batch_size           = args.batch_size,
         data_shape           = data_shape,
         path_imgrec          = path_imgrec_val,
+        path_imgidx          = path_imgrec_val.replace('.rec', '.idx'),
         shuffle              = False,
+        label_width = 2,
         rand_mirror          = False,
-        mean                 = mean,
     )
 
     metric = mx.metric.CompositeEvalMetric([AccMetric(), MAEMetric(), CUMMetric()])
