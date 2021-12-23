@@ -10,7 +10,7 @@ import logging
 import pickle
 import numpy as np
 import sklearn
-from data import FaceImageIter
+from data import AgeImageIter
 import mxnet as mx
 from mxnet import ndarray as nd
 import argparse
@@ -246,7 +246,7 @@ def train_net(args):
     )
     val_dataiter = None
 
-    train_dataiter = mx.image.ImageIter(
+    train_dataiter = AgeImageIter(
         batch_size           = args.batch_size,
         data_shape           = data_shape,
         path_imgrec          = path_imgrec,
@@ -255,13 +255,10 @@ def train_net(args):
         label_width = 2,
         rand_mirror          = bool(args.rand_mirror),
         rand_gray            = 0.1,
-        contrast             = 0.01,
-        hue                  = 0.01,
-        saturation           = 0.01,
-        pca_noise            = 0.01,
-        brightness           = 0.01
+        contrast             = 0.005,
+        saturation           = 0.005,
     )
-    val_dataiter = mx.image.ImageIter(
+    val_dataiter = AgeImageIter(
         batch_size           = args.batch_size,
         data_shape           = data_shape,
         path_imgrec          = path_imgrec_val,
